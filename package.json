@@ -8,10 +8,18 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@amcharts/amcharts5": "^5.4.8",
+		"@amcharts/amcharts5-fonts": "^5.0.1",
+		"@amcharts/amcharts5-geodata": "^5.1.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"svelte": "^4.0.5",
-		"vite": "^4.4.2"
+		"vite": "^4.4.2",
+		"vite-plugin-iso-import": "^1.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"csv-parser": "^3.0.0",
+		"fs": "^0.0.1-security"
+	}
 }
