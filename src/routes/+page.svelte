@@ -16,13 +16,18 @@ let chartdiv;
 
 onMount(() => {
    
-    const messageArray = Array.from(data.message);
-  const timeSeries = messageArray.map(item => ({ time: new Date(item.time), K: item.K }));
+  const objectArray = JSON.parse(data.message);
+
+  //console.log(objectArray);
+  // Output: [{name: "John", age: 30}, {name: "Jane", age: 25}]
+  //  const messageArray = Array.from(data.message);
+
+  const timeSeries = objectArray.map(item => ({ date: (new Date(item.time)).getTime(), value: parseInt(item.K) }));
   // rest of the code that uses timeSeries
 
 //  data.message.map(item => ({ x: new Date(item.time), y: item.K }));
 
-   // console.log(timeSeries);
+    console.log(timeSeries);
   // Create chart
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
 let root = am5.Root.new(chartdiv);
@@ -65,8 +70,8 @@ var series = chart.series.push(am5xy.LineSeries.new(root, {
   name: "Series",
   xAxis: xAxis,
   yAxis: yAxis,
-  valueYField: "K",
-  valueXField: "time",
+  valueYField: "value",
+  valueXField: "date",
   tooltip: am5.Tooltip.new(root, {
     labelText: "{valueY}"
   })
