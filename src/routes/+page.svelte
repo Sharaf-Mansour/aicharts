@@ -15,10 +15,14 @@ let chartdiv;
 //console.log(data.message);
 
 onMount(() => {
-  const timeSeries = rows.map((row) => {
-      const [time, K] = row.split(",");
-      return { time: new Date(time), K: parseFloat(K) };
-    });
+   
+    const messageArray = Array.from(data.message);
+  const timeSeries = messageArray.map(item => ({ time: new Date(item.time), K: item.K }));
+  // rest of the code that uses timeSeries
+
+//  data.message.map(item => ({ x: new Date(item.time), y: item.K }));
+
+   // console.log(timeSeries);
   // Create chart
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
 let root = am5.Root.new(chartdiv);
@@ -75,9 +79,9 @@ chart.set("scrollbarX", am5.Scrollbar.new(root, {
   orientation: "horizontal"
 }));
 
-console.log(data.message);
+//console.log(data.message);
 // Set data
-series.data.setAll(data.message);
+series.data.setAll(timeSeries);
 
 
 // Make stuff animate on load
