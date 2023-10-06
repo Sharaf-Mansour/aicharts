@@ -1,33 +1,40 @@
-<div class="chart" bind:this={chartdiv}></div>
+<div>
+  <form method="POST" action="?/create" use:enhance>
+    <textarea col="100" style="width: 100%;" type="text" name="text" placeholder="text" />
+    <button type="submit">Submit</button>
+</form>
+</div>
+ 
+<div class="chart" bind:this={chartdiv}></div> 
 <style>
-.chart {
+.chart {  
     width: 100%;
-    height: 500px;
+    height: 500px;  
 }
 </style>
 
 <script>
     export let data;
+   export let form ;
+    import { enhance } from "$app/forms";
 import { onMount } from "svelte";
 import * as am5 from "@amcharts/amcharts5?client";
 import * as am5xy from "@amcharts/amcharts5/xy?client";
 let chartdiv;
 //console.log(data.message);
 
-onMount(() => {
+function setupChart() {
+    let objectArray = [];
+    if (form != undefined) {
+      console.log(form.message);
+      objectArray = JSON.parse(form.message);
+    }
    
-  const objectArray = JSON.parse(data.message);
-
-  //console.log(objectArray);
-  // Output: [{name: "John", age: 30}, {name: "Jane", age: 25}]
-  //  const messageArray = Array.from(data.message);
-
-  const timeSeries = objectArray.map(item => ({ date: (new Date(item.time)).getTime(), value: parseInt(item.K) }));
+    const timeSeries = objectArray.map(item => ({ date: (new Date(item.time)).getTime(), value: parseInt(item.K) }));
   // rest of the code that uses timeSeries
 
 //  data.message.map(item => ({ x: new Date(item.time), y: item.K }));
-
-    console.log(timeSeries);
+ 
   // Create chart
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
 let root = am5.Root.new(chartdiv);
@@ -92,6 +99,13 @@ series.data.setAll(timeSeries);
 // Make stuff animate on load
 // https://www.amcharts.com/docs/v5/concepts/animations/
 series.appear(1000);
-chart.appear(1000, 100);
+chart.appear(1000, 100);  }
+$: if (form) {
+ 
+   setupChart();
+ 
+}
+onMount(() => {
+ // setupChart();
 });
 </script>
