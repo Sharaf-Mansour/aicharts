@@ -20,5 +20,10 @@
 	"type": "module",
 	"dependencies": {
 		"csv-parser": "^3.0.0"
-		}
+		},
+		"files": [
+			"static/Kpfrom2016.csv",
+			"src/routes/Kpfrom2016.csv"
+
+		  ]
 }
