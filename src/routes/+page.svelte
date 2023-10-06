@@ -1,9 +1,4 @@
-<div>
-  <form method="POST" action="?/create" use:enhance>
-    <textarea col="100" style="width: 100%;" type="text" name="text" placeholder="text" />
-    <button type="submit">Submit</button>
-</form>
-</div>
+
  
 <div class="chart" bind:this={chartdiv}></div> 
 <style>
@@ -26,10 +21,12 @@ let chartdiv;
 function setupChart() {
     let objectArray = [];
     if (form != undefined) {
-      console.log(form.message);
+      //console.log(form.message);
       objectArray = JSON.parse(form.message);
     }
-   
+   else{
+    objectArray = JSON.parse(data.message);
+   }
     const timeSeries = objectArray.map(item => ({ date: (new Date(item.time)).getTime(), value: parseInt(item.K) }));
   // rest of the code that uses timeSeries
 
@@ -106,6 +103,6 @@ $: if (form) {
  
 }
 onMount(() => {
- // setupChart();
+  setupChart();
 });
 </script>
