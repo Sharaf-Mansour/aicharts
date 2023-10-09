@@ -1,6 +1,6 @@
 import fs from "fs";
 import csv from "csv-parser";
-
+import {all} from "$lib/server";
 export const load = async () => {
     const results = [];
 
