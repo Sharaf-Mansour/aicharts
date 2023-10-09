@@ -5,7 +5,7 @@ export const load = async () => {
     const results = [];
 
     await new Promise((resolve, reject) => {
-        fs.createReadStream("src/public/Kpfrom2016.csv")
+        fs.createReadStream("server/Kpfrom2016.csv")
             .pipe(csv())
             .on("data", (data) => {
                 results.push(data);
