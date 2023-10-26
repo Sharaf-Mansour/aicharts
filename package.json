@@ -15,10 +15,10 @@
 		"@sveltejs/kit": "^1.20.4",
 		"svelte": "^4.0.5",
 		"vite": "^4.4.2",
-		"vite-plugin-iso-import": "^1.0.0"
+		"vite-plugin-iso-import": "^1.0.0",
+		"@vercel/blob": "^0.14.1",
+		"csv-parser": "^3.0.0",
+		"vercel": "^32.3.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"csv-parser": "^3.0.0"
-		} 
+	"type": "module"
 }
